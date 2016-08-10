@@ -9,16 +9,14 @@
 import UIKit
 
 enum ShareDataOption : Int {
-    case AppGroup = 0, URLSchemeAndPasteboard, Airdrop
+    case AppGroup = 0, Airdrop
     
-    static let allValues = [AppGroup, URLSchemeAndPasteboard, Airdrop]
+    static let allValues = [AppGroup, Airdrop]
     
     var title : String {
         switch self {
         case .AppGroup:
             return "AppGroup"
-        case .URLSchemeAndPasteboard:
-            return "URLSchemeAndPasteboard"
         case .Airdrop:
             return "AirDrop"
         }
@@ -50,18 +48,31 @@ class ViewController: UITableViewController {
     }
     
     func shareOrderedProducts(products: [String]) {
-        print("selected products: \(products)")
-        print("share option: \(dataShareOption.title)")
-        
-        shareWithAppGroup(products: products)
+        shareProductsWithAppGroup(products: products)
+        shareFilesWithAppGroup()
         
         UIApplication.shared.open(URL.init(string: "launchUsers://")!)
     }
     
-    func shareWithAppGroup(products: [String]) {
-    
+    func shareProductsWithAppGroup(products: [String]) {
+        let orderKey = "OrderedProducts"
+        let sharedUserDefault = UserDefaults.init(suiteName: "group.vera.share")
+        sharedUserDefault?.set(products, forKey: orderKey)
+        sharedUserDefault?.synchronize()
     }
     
+    func shareFilesWithAppGroup() {
+        let manager = FileManager.default
+        guard let shareDir = manager.containerURL(forSecurityApplicationGroupIdentifier: "group.vera.share")?.appendingPathComponent("Shares") else { return }
+        try? manager.createDirectory(at: shareDir, withIntermediateDirectories: true, attributes: nil)
+        
+        if let urls = Bundle.main.urls(forResourcesWithExtension: nil, subdirectory: "Shared") {
+            urls.forEach { url in
+                let desURL = shareDir.appendingPathComponent(url.lastPathComponent)
+                try? manager.copyItem(at: url, to: desURL)
+            }
+        }
+    }
 }
 
 extension ViewController {

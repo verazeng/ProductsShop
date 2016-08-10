@@ -14,6 +14,7 @@
 		D244BE281D59A01100D905F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D244BE261D59A01100D905F3 /* LaunchScreen.storyboard */; };
 		D244BE331D59A01100D905F3 /* ProductsShopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D244BE321D59A01100D905F3 /* ProductsShopTests.swift */; };
 		D244BE3E1D59A01100D905F3 /* ProductsShopUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D244BE3D1D59A01100D905F3 /* ProductsShopUITests.swift */; };
+		D26FD5061D5B0F29005706B4 /* Shared in Resources */ = {isa = PBXBuildFile; fileRef = D26FD5051D5B0F29005706B4 /* Shared */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,8 @@
 		D244BE391D59A01100D905F3 /* ProductsShopUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProductsShopUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D244BE3D1D59A01100D905F3 /* ProductsShopUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsShopUITests.swift; sourceTree = "<group>"; };
 		D244BE3F1D59A01100D905F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D244BE4E1D5AF43F00D905F3 /* ProductsShop.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ProductsShop.entitlements; sourceTree = "<group>"; };
+		D26FD5051D5B0F29005706B4 /* Shared */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Shared; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,12 +100,14 @@
 		D244BE1C1D59A01100D905F3 /* ProductsShop */ = {
 			isa = PBXGroup;
 			children = (
+				D244BE4E1D5AF43F00D905F3 /* ProductsShop.entitlements */,
 				D244BE1D1D59A01100D905F3 /* AppDelegate.swift */,
 				D244BE1F1D59A01100D905F3 /* ViewController.swift */,
 				D244BE211D59A01100D905F3 /* Main.storyboard */,
 				D244BE241D59A01100D905F3 /* Assets.xcassets */,
 				D244BE261D59A01100D905F3 /* LaunchScreen.storyboard */,
 				D244BE291D59A01100D905F3 /* Info.plist */,
+				D26FD5051D5B0F29005706B4 /* Shared */,
 			);
 			path = ProductsShop;
 			sourceTree = "<group>";
@@ -193,7 +198,13 @@
 				TargetAttributes = {
 					D244BE191D59A01100D905F3 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 25EZUPR5QA;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					D244BE2D1D59A01100D905F3 = {
 						CreatedOnToolsVersion = 8.0;
@@ -233,6 +244,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D244BE281D59A01100D905F3 /* LaunchScreen.storyboard in Resources */,
+				D26FD5061D5B0F29005706B4 /* Shared in Resources */,
 				D244BE251D59A01100D905F3 /* Assets.xcassets in Resources */,
 				D244BE231D59A01100D905F3 /* Main.storyboard in Resources */,
 			);
@@ -412,6 +424,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ProductsShop/ProductsShop.entitlements;
+				DEVELOPMENT_TEAM = 25EZUPR5QA;
 				INFOPLIST_FILE = ProductsShop/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vera.ProductsShop;
@@ -424,6 +438,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ProductsShop/ProductsShop.entitlements;
+				DEVELOPMENT_TEAM = 25EZUPR5QA;
 				INFOPLIST_FILE = ProductsShop/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vera.ProductsShop;
@@ -501,6 +517,7 @@
 				D244BE441D59A01100D905F3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D244BE451D59A01100D905F3 /* Build configuration list for PBXNativeTarget "ProductsShopTests" */ = {
 			isa = XCConfigurationList;
@@ -509,6 +526,7 @@
 				D244BE471D59A01100D905F3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D244BE481D59A01100D905F3 /* Build configuration list for PBXNativeTarget "ProductsShopUITests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +535,7 @@
 				D244BE4A1D59A01100D905F3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
