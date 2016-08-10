@@ -52,23 +52,14 @@ class ViewController: UITableViewController {
     func shareOrderedProducts(products: [String]) {
         print("selected products: \(products)")
         print("share option: \(dataShareOption.title)")
-        shareWithPasteboard(products: products)
+        
+        shareWithAppGroup(products: products)
+        
         UIApplication.shared.open(URL.init(string: "launchUsers://")!)
     }
     
-    func shareWithPasteboard(products: [String]) {
-        let pasteboardIdentifier = "com.vera.products.to.users"
-        let pasteboardType = "OrderedProducts"
-        let pasteboard = UIPasteboard.init(name: pasteboardIdentifier, create: true)
-        pasteboard?.setValue(products, forPasteboardType: pasteboardType)
-        pasteboard?.setPersistent(true)
-        print("##pasteboard:\(pasteboard)")
-        
-        let pasteboard2 = UIPasteboard.init(name: pasteboardIdentifier, create: false);
-        let pros = pasteboard2?.value(forPasteboardType: pasteboardType)
-        
-        print("##pasteboard2:\(pasteboard2), pros:\(pros)")
-        
+    func shareWithAppGroup(products: [String]) {
+    
     }
     
 }
