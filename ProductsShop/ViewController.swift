@@ -38,6 +38,10 @@ class ViewController: UITableViewController {
                 return products[indexPath.row]
             })
             shareOrderedProducts(products: selectedProducts)
+        } else {
+            let alertVC = UIAlertController.init(title: "Warning", message: "Please select your products", preferredStyle: .alert)
+            alertVC.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alertVC, animated: true, completion: nil)
         }
     }
     
@@ -48,6 +52,23 @@ class ViewController: UITableViewController {
     func shareOrderedProducts(products: [String]) {
         print("selected products: \(products)")
         print("share option: \(dataShareOption.title)")
+        shareWithPasteboard(products: products)
+        UIApplication.shared.open(URL.init(string: "launchUsers://")!)
+    }
+    
+    func shareWithPasteboard(products: [String]) {
+        let pasteboardIdentifier = "com.vera.products.to.users"
+        let pasteboardType = "OrderedProducts"
+        let pasteboard = UIPasteboard.init(name: pasteboardIdentifier, create: true)
+        pasteboard?.setValue(products, forPasteboardType: pasteboardType)
+        pasteboard?.setPersistent(true)
+        print("##pasteboard:\(pasteboard)")
+        
+        let pasteboard2 = UIPasteboard.init(name: pasteboardIdentifier, create: false);
+        let pros = pasteboard2?.value(forPasteboardType: pasteboardType)
+        
+        print("##pasteboard2:\(pasteboard2), pros:\(pros)")
+        
     }
     
 }
@@ -58,7 +79,7 @@ extension ViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView .dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell", for: indexPath)
         cell.textLabel?.text = products[indexPath.row]
         return cell
     }
